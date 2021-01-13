@@ -1,0 +1,45 @@
+﻿<Page x:Class="MenuList.Views.Pages.OperatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MenuList.Views.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Странциа операций">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+
+        <Button
+            Style="{StaticResource btnBack}"
+            Name="btnBack"
+            Click="btnBack_Click"/>
+        <StackPanel 
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock Text="Назване программы:"/>
+            <TextBox Text="{Binding Apps.Title}"/>
+
+            <TextBlock Text="Размер:"/>
+            <TextBox Text="{Binding Apps.Size}"/>
+
+            <TextBlock Text="Группа программы:"/>
+            <ComboBox ItemsSource="{Binding Groups}"
+                      DisplayMemberPath="Title"
+                      SelectedItem="{Binding Apps.Group}"/>
+
+            <Button x:Name="btnSave"
+                    Click="btnSave_Click"
+                    Height="24"
+                    Margin="0 5"
+                    Content="Save"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,96 @@
+﻿<Page x:Class="MenuList.Views.Pages.ShowDatePage"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:MenuList.Views.Pages" 
+      xmlns:local1="clr-namespace:MenuList.Classes"
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
+      mc:Ignorable="d" 
+      Title="Просмотр данных">
+
+    <Page.Resources>
+        <local1:ConverterClass x:Key="ConverterClass">
+            
+        </local1:ConverterClass>
+    </Page.Resources>
+
+    <Grid
+        Background="White">
+
+        <!--Разделение Grid на строки-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" MinHeight="50"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!--Кнопка для навигации назад-->
+        <Button Style="{StaticResource btnBack}"
+                Grid.Row="0"
+                Name="btnBack"
+                Click="btnBack_Click"/>
+
+        <!--Вывод данных-->
+        <ListView
+            Grid.Row="1"
+                Name="DateList"
+                ItemsSource="{Binding Apps}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel
+                            Orientation="Horizontal">
+
+                        <Image Source="{Binding Path=icon}"
+                                   Height="100"
+                                   Width="100"/>
+                        <StackPanel>
+                            <!--Название-->
+                            <TextBlock 
+                                    Text="{Binding Path=Title}" 
+                                    FontSize="18"/>
+                            <!--Группа-->
+                            <TextBlock 
+                                    Text="{Binding Path=Group.Title}" 
+                                    FontSize="14"/>
+                            <!--Размер-->
+                            <TextBlock 
+                                    Text="{Binding Path=Size, Converter={StaticResource ConverterClass}}" 
+                                    FontSize="14"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Окно поиска-->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            <Button
+                Width="100"
+                Margin="0 0 80 0"
+                Content="Редактировать"
+                Name="btnUpdate"
+                Click="btnUpdate_Click"/>
+
+            <TextBox
+                Width="300"
+                FontSize="16"
+                BorderThickness="0 0 0 2"
+                Name="TxbSearch"
+                
+                TextChanged="TxbSearch_TextChanged"/>
+
+            <Button
+                Margin="80 0 0 0"
+                Width="100"
+                Content="Удалить"
+                Name="btnDelete"
+                Click="btnDelete_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

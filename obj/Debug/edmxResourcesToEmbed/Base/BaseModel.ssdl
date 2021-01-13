@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TestBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="T_App">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="icon" Type="nvarchar" MaxLength="150" />
+    <Property Name="Size" Type="bigint" />
+  </EntityType>
+  <Association Name="FK_T_App_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="T_App" Type="Self.T_App" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_App">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TestBaseModelContainer">
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_App" EntityType="Self.T_App" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_T_App_Group" Association="Self.FK_T_App_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="T_App" EntitySet="T_App" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

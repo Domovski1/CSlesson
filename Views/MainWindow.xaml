@@ -1,0 +1,22 @@
+﻿<Window x:Class="MenuList.MainWindow"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MenuList"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Path=Content.Title, ElementName=mainFrame}" 
+        mc:Ignorable="d"
+        Height="450" 
+        Width="800">
+    
+    
+    <Grid>
+        
+        <!--Главный фрейм-->
+        <Frame
+            NavigationUIVisibility="Hidden"
+            x:Name="mainFrame"/>
+        
+    </Grid>
+</Window>
